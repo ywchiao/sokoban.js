@@ -13,7 +13,8 @@ Javascript (ECMAScript) 執行環境。在 Node.js 的加持下，Javascript
 嘗試撰寫以 Node.js 為基礎的 Web 版 sokoban 遊戲。
 
 同樣是練習專案，Sokoban.js 有一個 Android/Java 為基礎的姊妹專案：
-[sokoban][sokoban.android]；基本設計理念，設計基源等都來自這個姊妹專案。
+[sokoban][sokoban.android]；基本設計理念，設計基礎等都源自這個
+姊妹專案。
 
 [nodejs]: https://nodejs.org
 [sokoban]: https://en.wikipedia.org/wiki/Sokoban
