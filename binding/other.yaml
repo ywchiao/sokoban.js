@@ -1,0 +1,31 @@
+---
+title: "Sokoban.js"
+author: "喬逸偉 (Yiwei Chiao)"
+papersize: a4
+fontsize: 12pt
+geometry: margin=2cm
+numbersections: true
+secnumberdepth: 4
+CJKOptions:
+    CJKmainfont='Noto Sans CJK TC'
+documentclass:
+    - scrartcl
+header-includes:
+    - \usepackage{paralist}
+    - \usepackage{booktabs}
+    - \usepackage{numprint, xspace, paralist}
+    - \usepackage{hyperref}
+    - \usepackage{cleveref}
+    - \usepackage[pdftex]{graphicx}
+    - \usepackage[utf8]{inputenc}
+    - \usepackage{XCharter}
+    - \usepackage{sourcecodepro}
+    - \usepackage{fixltx2e}
+    - \usepackage[expert]{mathdesign}
+    - \usepackage{bera}
+    - \usepackage[T1]{fontenc}
+    - \usepackage[margin=0.8in]{geometry}
+    - \usepackage{microtype}
+    - \usepackage{epigraph}
+    - \renewcommand*{\titlepagestyle}{empty}
+---
