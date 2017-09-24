@@ -1,19 +1,23 @@
 ---
-title: Sokoban.js
+title: Sokoban.js 專案設定
 author: 喬逸偉 (Yiwei Chiao)
+#thanks:
 papersize: a4
 fontsize: 12pt
 geometry: margin=2cm
 numbersections: true
-CJKmainfont: Noto Sans CJK TC
-CJKmonofont: Noto Sans Mono CJK TC
-CJKOptions:
-    CJKmainfont: Noto Sans CJK TC
-    CJKmonofont: Noto Sans Mono CJK TC
-    mainfont: Noto Sans
-    monofont: Source Code Pro
-    romanfont: Times New Roman
-    XeTexlinebreaklocale: zh
-    XeTexlinebreakskip: 0pt plus 1pt
-    parindent: 0em
+urlcolor: BlueViolet
+linestretch: 1.2
+#links-as-notes: true
+header-includes:
+    - \usepackage{booktabs}
+    - \usepackage{numprint, xspace, paralist}
+    - \usepackage{hyperref}
+    - \usepackage{cleveref}
+    - \usepackage[utf8]{inputenc}
+    - \usepackage{fixltx2e}
+    - \usepackage[expert]{mathdesign}
+    - \usepackage[T1]{fontenc}
+    - \usepackage{microtype}
+    - \usepackage{epigraph}
 ---

@@ -3,7 +3,7 @@
  *  @brief      The main entry of Binding.
  *  @author     Yiwei Chiao (ywchiao@gmail.com)
  *  @date       09/21/2017 created.
- *  @date       09/22/2017 last modified.
+ *  @date       09/24/2017 last modified.
  *  @version    0.1.0
  *  @copyright  MIT, (C) 2017 Yiwei Chiao
  *  @details
@@ -31,11 +31,15 @@ const getChapters = doc => {
 
 const book = '../doc';
 
-const refUrl = /\[(\w+)\]: *(https?:\/\/[\w-./]+\w$)/;
+const linkUrl = /\[([\w.]+)\]: *(https?:\/\/[\w-./]+\w$)/;
+const refUrl = /\[(\^[\w.]+)\]: *(https?:\/\/[\w-./]+\w$)/;
+const refTag = /(\[\^[\w.]+\])/g;
 let inComments = false;
 let isLF = false;
 
-const urls = {};
+const urlLinks = {};
+const urlRefs = {};
+const refDefs = [];
 
 const isCmtClosing = line => {
   return line.match(/-->$/);
@@ -48,15 +52,46 @@ const isCmtOpening = line => {
 const isRefUrl = line => {
   let refDef = false;
 
-  let link = line.match(refUrl);
+  let ref = line.match(refUrl);
 
-  if (link) {
-    urls[link[1]] = link[2]
+  if (ref) {
+    urlRefs[ref[1]] = ref[2]
 
     refDef = true;
   }
 
   return refDef;
+};
+
+const isLinkUrl = line => {
+  let refDef = false;
+
+  let link = line.match(linkUrl);
+
+  if (link) {
+    urlLinks[link[1]] = link[2]
+
+    refDef = true;
+  }
+
+  return refDef;
+};
+
+const removeDupRef = line => {
+//  let tag = line.match(refTag);
+  let txt = line;
+  let tag = null;
+
+  while ((tag = refTag.exec(line)) !== null) {
+    if (refDefs.includes(tag[1])) {
+      line = line.replace(refTag, '');
+    }
+    else {
+      refDefs.push(tag[1]);
+    }
+  }
+
+  return line;
 };
 
 const binding = chap => {
@@ -91,7 +126,7 @@ const binding = chap => {
   let f = fs.openSync(book + '/' + chap + '/md/chapter_' + chap + '.md', 'a');
 
   for (let line in comments) {
-    fs.writeFileSync(f, comments[line]);
+    fs.writeSync(f, comments[line], 'utf8');
   }
 
   toc.section.forEach(sec => {
@@ -114,6 +149,10 @@ const binding = chap => {
         continue;
       }
 
+      if (isLinkUrl(txt[line])) {
+        continue;
+      }
+
       if (isRefUrl(txt[line])) {
         continue;
       }
@@ -127,24 +166,33 @@ const binding = chap => {
         }
       }
 
-      if (txt[line].length == 0) {
+      let text = txt[line];
+
+      if (text.length == 0) {
         isLF = true;
       }
+      else {
+        text = removeDupRef(text);
+      }
 
-      fs.writeFileSync(f, txt[line] + '\n');
+      fs.writeSync(f, text + '\n', 'utf8');
     } // od
   });
 
-  for (let key in urls) {
-    fs.writeFileSync(f, `[${key}]: ${urls[key]}\n`);
+  for (let key in urlLinks) {
+    fs.writeSync(f, `[${key}]: ${urlLinks[key]}\n`, 'utf8');
   }
 
-  fs.writeFileSync(f, `\n<!--- chapter_${chap}.md -->`);
+  for (let key in urlRefs) {
+    fs.writeSync(f, `[${key}]: ${urlRefs[key]}\n`, 'utf8');
+  }
+
+  fs.writeSync(f, `\n<!--- chapter_${chap}.md -->`, 'utf8');
 
   fs.closeSync(f);
 };
 
-getChapters(book).forEach( chap => {
+getChapters(book).forEach(chap => {
   binding(chap);
 });
 
