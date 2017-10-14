@@ -13,7 +13,7 @@ rem   DST_NAME: destination file
 set DST_NAME=%~n1
 set DST_NAME=%DST_NAME: =_%.p2g
 rem call pngcrush.exe to crush the png file.
-convert "%SRC_NAME%" -resize 512x512 "%DST_NAME%"
+convert "%SRC_NAME%" -resize 1024x768 "%DST_NAME%"
 goto :end
 :restore
 rem set variables

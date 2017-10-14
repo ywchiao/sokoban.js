@@ -3,7 +3,7 @@
  *  @brief      The main entry of Binding.
  *  @author     Yiwei Chiao (ywchiao@gmail.com)
  *  @date       09/21/2017 created.
- *  @date       09/24/2017 last modified.
+ *  @date       10/04/2017 last modified.
  *  @version    0.1.0
  *  @copyright  MIT, (C) 2017 Yiwei Chiao
  *  @details
@@ -31,8 +31,8 @@ const getChapters = doc => {
 
 const book = '../doc';
 
-const linkUrl = /\[([\w.]+)\]: *(https?:\/\/[\w-./]+\w$)/;
-const refUrl = /\[(\^[\w.]+)\]: *(https?:\/\/[\w-./]+\w$)/;
+const linkUrl = /\[([\w.]+)\]: *(https?:\/\/[\w-_.#/]+\w$)/;
+const refUrl = /\[(\^[\w.]+)\]: *(https?:\/\/[\w-_.#/]+\w$)/;
 const refTag = /(\[\^[\w.]+\])/g;
 let inComments = false;
 let isLF = false;

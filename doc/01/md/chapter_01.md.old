@@ -1,6 +1,6 @@
 <!---
   @file       chapter_01.md
-  @date       09/24/2017 created.
+  @date       10/13/2017 created.
   @copyright  CC-BY, (C) 2017 Yiwei Chiao
   @detail
     This file is machine-generated. DONOT MODIFY IT DIRECTLY.
@@ -182,11 +182,9 @@
     這裡有兩 (2) 個選擇，
 
     1. 完整版 [cmder][] + [git][]:
-
       [cmder][] 的作者很貼心的將 [git][] 整合到 [cmder][] 的發行檔內，
       省去使用者另外下載安裝的繁瑣。
     1. 精簡版 [cmder][] *mini*:
-
       如果已經安裝了 [git][]，或者想自行安裝維護 [git][]，可以選擇 *mini*
       版，只有 6M 大小。
 
