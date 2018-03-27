@@ -1,6 +1,6 @@
 <!---
   @file       chapter_03.md
-  @date       10/13/2017 created.
+  @date       12/15/2017 created.
   @copyright  CC-BY, (C) 2017 Yiwei Chiao
   @detail
     This file is machine-generated. DONOT MODIFY IT DIRECTLY.
@@ -56,10 +56,11 @@
   * MacOs: `file:///Users/ywchiao/sokoban/htdocs/index.html`
 
  其中 Windows 的 `d:`，Linux/MacOS 裡的 `ywchiao` 請依個人情況更改。在
- Linux/MacOS 系統如果不清楚路徑要麼打，可以在 terminal 下利用 `cd` 指令，
- 切換工作目錄到 `sokoban/htdocs` 之後，輸入 `pwd` (Present Working Directory)，依螢幕輸出打就行了；而 Windows 則可以利用檔案總管，切換資料夾
- 到 `sokoban/htdocs` 後，在檔管總管的瀏覽器列空白處，點一下滑鼠左鍵就可以看到
- 要輸入的內容。
+ Linux/MacOS 系統如果不清楚路徑要怎麼打，可以在 terminal 下利用 `cd` 指令，
+ 切換工作目錄到 `sokoban/htdocs` 之後，輸入 `pwd`
+ (Present Working Directory)，依螢幕輸出打就行了；而 Windows 則可以利用
+ 檔案總管，切換資料夾到 `sokoban/htdocs` 後，在檔管總管的瀏覽器列空白處，
+ 點一下滑鼠左鍵就可以看到要輸入的內容。
 
  如果瀏覽器的網址列輸入正確，應該會看見如 Figuer \ref{file:index} 的畫面。
 
@@ -253,6 +254,454 @@
 
 <!-- html.md -->
 
+# 簡單的 HTML 版面架構
+
+ 目前 `index.html` 看起來看單純的 `Hello World!` 沒什麼兩樣。因為整個還沒有
+ 置入文件結構和版面訊息。為了對 [HTML][mdnHTML] 文件結構和版面的關係有個基本的
+ 理解，Figure \ref{html:layout} 利用 [CSS][mdnCSS] 將 [HTML][mdnHTML]
+ 不同版塊設定不同的背景顏色，以呈現 [HTML][mdnHTML] 元素之間的關聯。
+
+  ![HTML 基本版塊\label{html:layout}](images/html_layout.png)
+
+## [HTML][mdnHTML] 和內嵌的 [CSS][mdnCSS]
+
+ Figure \ref{html:layout} 的源碼如下：
+
+```html
+ 1. <!DOCTYPE html>
+ 2. <html lang="zh-TW">
+ 3.   <head>
+ 4.     <meta charset="utf-8">
+ 5.     <meta name="viewport" content="width=device-width,
+          initial-scale=1.0">
+ 7.
+ 8.     <title>Sokoban: A Puzzle Game</title>
+ 9.     <meta name="author" content="Yiwei Chiao">
+10.     <meta name="description" content="A web-based Sokoban
+          (倉庫番) game.">
+11.     <meta name="keywords" content="Javascript, game, Sokoban">
+12.   </head>
+13.   <body style="background-color: #ffffe7;">
+14.     <header style="background-color: #c7c7f7;">
+15.       <h1>Sokoban:</h1>
+16.       <h3>一個 html5/css3/node.js 的練習專案</h3>
+17.     </header>
+18.     <nav style="background-color: #c7f7f7;">
+19.       <h2>NAV</h2>
+20.       <h3>功能表單 navigation</h3>
+21.     </nav>
+22.     <aside style="background-color: #f7c7c7; width: 15%;
+          height: 500px; float: left;">
+23.       <h2>ASIDE</h2><h3>側欄</h3>
+24.     </aside>
+25.     <article style="background-color: #c7c7c7; width: 85%;
+          height: 500px; float: left;">
+26.       <h2>ARTICLE</h2>
+27.       主題文件
+28.       <section style="background-color: #c7f7c7;
+            height: 150px;">
+29.         <h2>SECTION</h2>
+30.         第一小節
+31.       </section>
+32.       <section style="background-color: #c7f7c7;
+            height: 150px;">
+33.         <h2>SECTION</h2>
+34.         第二小節
+35.       </section>
+36.     </article>
+37.     <footer style="background-color: #e7e7e7;">
+38.       <h2>FOOTER</h2>
+          <small>&copy; Copyright 2017，佛光大學創意與科技學院<small>
+39.     </footer>
+40.   </body>
+41. </html>
+```
+
+ 約 40 行的 [HTML][mdnHTML] 碼，看起來是有那麼點手足無措。對照 Figure
+ \ref{html:layout}，將 `index.html` 的 `<body></body>` 結構獨立出來後，
+ 其實只有如下約 20 行的內容：
+
+```html
+13.   <body style="background-color: #ffffe7;">
+14.     <header style="background-color: #c7c7f7;">
+17.     </header>
+18.     <nav style="background-color: #c7f7f7;">
+21.     </nav>
+22.     <aside style="background-color: #f7c7c7; width: 15%;
+          height: 500px; float: left;">
+24.     </aside>
+25.     <article style="background-color: #c7c7c7; width: 85%;
+          height: 500px; float: left;">
+28.       <section style="background-color: #c7f7c7;
+            height: 150px;">
+31.       </section>
+32.       <section style="background-color: #c7f7c7;
+            height: 150px;">
+35.       </section>
+36.     </article>
+37.     <footer style="background-color: #e7e7e7;">
+39.     </footer>
+40.   </body>
+```
+
+ 為了讓 [HTML][mdnHTML5] 的 `<tag>` 能更清楚的表達文件的結構，網頁設計者能更
+ 明確地將他/她的設計意圖傳逹給瀏覽器，[HTML5][mdnHTML5] 引入了一些，如上面片段裡的，新的**語義化** (semantic) 的 `<tag>` 來標示文件結構：
+
+  * `<header></header>`: 用來放網頁横幅 (banner)，摘要 (abstract)
+   等表頭 (head) 資訊。
+  * `<footer></footer>`: 放置版權聲明，腳註 (footnote) 資料，頁碼等。
+  * `<nav></nav>`: 分頁，功能表，等引導使用者在網頁內移動的資訊。
+  * `<aside></aside>`: 側橺。置放和主要文章的相關資料或導覽。
+  * `<article></article>`: 主題文草。
+  * `<section></section>`: 文件段落。
+
+ 在如 `<body style="background-color: #ffffe7;">` 內出現的
+ `style="..."` 就是所謂的 [CSS][mdnCSS]。如在上面的 `index.html` 源碼裡
+ 看到的，在 [CSS][mdnCSS] 裡可以利用 `background-color` 來設定背景顏色；
+ `height`, `width` 屬性等。
+
+ 像這樣將 [CSS][mdnCSS] 設定直接利用 [HTML][mdnHTML5] `tag` 的 `style`
+ 屬性寫在 [HTML][mdnHTML5] 檔案裡稱為 *embedded CSS*，嵌入式的寫法。這種作
+ 法在 Web 早期還沒有目前這麼泛用，或簡單網頁時很方便；但明顯已無法應付現在對網頁
+ 的嚴苛要求。因此，目前作法多會將 [CSS][mdnCSS] 獨立在自己的 `.css` 檔內，再
+ 利用 `<head>` 區塊裡的 `<link> tag` 來結合兩者。
+
+[github]: https://github.com/
+[wikiText]: https://en.wikipedia.org/wiki/Text_(literary_theory)
+
+<!-- sketch.md -->
+
+# 簡單的 CSS 檔案設定
+
+ 直接在 [HTML][mdnHTML] *tag* 裡插入各式各樣的屬性設定，除了極少數
+ 的情況外，實在不是個好主意。所以才有 [CSS][mdnCSS] 的出現，也就是
+ **外部的** (*external*) 獨立 `.css` 檔案。
+
+ 原來的 `index.html` 可以改寫如下：
+
+```html
+ 1. <!DOCTYPE html>
+ 2. <html lang="zh-TW">
+ 3.   <head>
+11.     
+12.     <link rel="stylesheet" href="assets/css/styles.css">
+13.   </head>
+14.   <body>
+15.     <header id="page_top">
+16.       <h1 class="irontext">Sokoban:</h1>
+17.       <h3>一個 html5/css3/node.js 的練習專案</h3>
+18.     </header>
+19.     <nav>
+20.       <h2>NAV</h2>
+21.       <h3>功能表單 navigation</h3>
+47.     </nav>
+48.     <div class="flexbox">
+49.       <aside>
+50.         <h2 class="irontext">ASIDE</h2>
+51.         <h3>側欄</h3>
+52.       </aside>
+53.       <article>
+54.         <h2 class="bluetext">ARTICLE</h2>
+55.         主題文件
+56.         <section class="browntext" id="sec1">
+57.           <h2 class="redtext">SECTION</h2>
+58.           第一小節
+59.           <img src="assets/png/SokobanClone_byVellidragon.png"
+                alt="sokoban icons" width="480" height="480">
+60.           <button type="button">
+61.             <a href="#page_top">回上方</a>
+62.           </button>
+63.         </section>
+64.         <section class="browntext milky" id="sec2">
+65.           <h2 class="redtext">SECTION</h2>
+66.           第二小節
+67.         </section>
+68.         <section class="browntext milky" id="sec3">
+69.           <h2 class="redtext">SECTION</h2>
+70.           第三小節
+71.         </section>
+72.       </article>
+73.     </div>
+74.     <footer class="lighttext">
+75.       <h2 class="blacktext">FOOTER</h2>
+76.       <small>&copy; Copyright 2017，佛光大學創意與科技學院<small>
+77.     </footer>
+78.   </body>
+79. </html>
+```
+
+ 和原來的 `index.html` 重要的差別有四 (4):
+  1. 第 *12* 行，加入了 `<link>` *tag*，連結到外部皂 `.css` 檔案，
+   `styles.css`。
+  1. 第 *59* 行，加入了 `<img>` *tag*，連結到外部皂 `.png` 檔案。
+   `SokobanClone_byVellidragon.png`。
+  1. 所有 *tag* 裡有關**背景顏色** (*background-color*) 的描述都拿掉了。
+  1. 有些 *tag* (如第 *15* 行的 `<header>`) 多了 `id` 的設定；而另有些
+   *tag* (如第 *16* 行的 `<h1>`) 多了 `class` 的設定。
+
+## `<link>` *tag*
+
+ [HTML][mdnHTML] 利用 `<link>` *tag* 來標明和外部 (external) 資源
+ (resource) 的聯繫。最**常用**的情況就是用來標明使用的 `.css` 檔。
+
+ `index.html` 的第 *12* 行內容如下：
+
+```html
+12.     <link rel="stylesheet" href="assets/css/styles.css">
+```
+
+ 其中 `rel` 代表 *relation* (關係)，就是 `<link>` 的外部資源和目前的
+ `.html` 檔的**關係** (relationship)，這裡填入 `stylesheet` 代表是相關的
+ `.css` 檔案；後面 `href` (hyper-reference) 則是 `url` 指出如何取得這個
+ 外部 `.css` 檔案。這裡利用以 `index.html` 為**參考點**的**相對路徑**
+ (relative path) 去取得置於在 `assets/css` 資料夾下的 `styles.css`
+ 檔案。
+
+## `<img>` *tag*
+
+ `<img>` *tag* 是 [HTML][mdnHTML] 標示要插入圖檔 (*image*) 的 *tag*。
+
+```html
+59.           <img src="assets/png/SokobanClone_byVellidragon.png"
+                alt="sokoban icons" width="480" height="480">
+```
+
+ `src` (source) 是圖檔的 `url`，這裡一樣利用以 `index.html` 位置作為參考點
+ 的**相對路徑**來取得置放在 `assets/png` 資料夾下的
+ `SokobanClone_byVellidragon.png` 檔。`alt` (alternative) 是標明當圖片
+ 無法顯示或在**無障礙**瀏覽模式，讓瀏覽器可以顯示/語音念出映圖片內容的說明文字。
+
+ 而 `SokobanClone_byVellidragon.png` 檔本身則是將用來作為 `Sokoban` 遊戲
+ 內的顯示元件使用。可以在 [opengameart][sokoban.tiles] 取得。
+
+## `styles.css` 檔
+
+ `assets/css` 資料夾的 `styles.css` 檔案內容如下：
+
+```css
+  1. html {
+  2.     height: 100%;
+  3. }
+  4.
+  5. body {
+  6.     background-color: #ffffe7;
+  7.     height: 100%;
+  8. }
+  9.
+ 10. header {
+ 11.     background-color: #c7c7f7;
+ 12. }
+ 13.
+ 14. nav {
+ 15.     background-color: #c7f7f7;
+ 16. }
+ 17.
+ 46. aside {
+ 47.     background-color: #f7c7c7;
+ 48.     width: 15%;
+ 49.     float: left;
+ 50. }
+ 51.
+ 52. article {
+ 53.     background-color: #c7c7c7;
+ 54.     width: 85%;
+ 55.     float: left;
+ 56. }
+ 57.
+ 58. section {
+ 59.     background-color: #c7f7c7;
+ 60. }
+ 61.
+ 62. footer {
+ 63.     background-color: #e7e7e7;
+ 64. }
+ 65.
+ 66. .flexbox {
+ 67.     display: flex;
+ 68. }
+ 69.
+ 70. .blacktext{
+ 71.     color: #0f0f0f;
+ 72. }
+ 73.
+ 74. .redtext {
+ 75.     color: #ff3333;
+ 76. }
+ 77.
+ 78. .bluetext {
+ 79.     color: #3333ff;
+ 80. }
+ 81.
+ 82. .irontext {
+ 83.     color: #efefaf;
+ 84. }
+ 85.
+ 86. .browntext {
+ 87.     color: #9f5f5f;
+ 88. }
+ 89.
+ 90. .sectext {
+ 91.     color: #7f7fef;
+ 92. }
+ 93.
+ 94. .lighttext {
+ 95.     color: #9f9f7f;
+ 96. }
+ 97.
+138. #about {
+139.     float: right;
+140.     margin: 0px 2em 0px 0px;
+141. }
+142.
+151. .milky {
+152.     background-color: #ffffea;
+153. }
+```
+
+ 如上所示，`.css` 內是以一個名稱，稱作**選擇器** (*selector*) 開始，後面跟著
+ 用 `{...}` 標示的**區塊** (block)，在**區塊**內就是 `css` 的屬性設定。
+
+ **屬性** (atttibute) 設定遵循 `attribute: value;` 的格式；要設定的
+ **屬性**名稱和**值** (value) 由 `:` 隔開；而**屬性**和**屬性**之間則以
+ `;` 分隔。
+
+### 選擇器 (selector)
+
+ 為了知道 `.css` 檔內設定的屬性要應用在 `.html` 檔內的那個 `tag` 上，
+ [CSS][mdnCSS] 設定了**三***(*3*) 的層級的**選擇器**，如下：
+
+ * HTML tag: 每個 [HTML][mdnHTML] 的 `tag` 都是**第一階**的選擇器。在這裡
+  設定的 style，如果沒有被其它選擇器覆蓋掉，會應用在 `.html` 檔裡**所有**相
+  同的 `tag` 上。如 `styles.css` 裡的第 1, 5, 10 行等。
+ * class: 在 [HTML][mdnHTML] 的 `tag` 裡設定的 `class`；如
+  `index.html` 的第 *16* 行 `<h1 class="irontext"` 裡的 `irontext`
+  就對應上面 `styles.css` 檔裡的第 *82* 行。注意，在 [CSS][mdnCSS] 裡，
+  `class` 選擇器以 `.` (句點) 開頭。和 HTML tag 選擇器類似，如果沒有另外被覆
+  蓋，設定的 style 會應用在**所用**相同 *class* 的 *tag* 上。
+ * `id`: 在 [HTML][mdnHTML] 的 `tag` 裡設定的 `id`；如 `index.html`
+  裡的第 *15* 行和 `styles.css` 裡的第 *138* 行；和前兩 (*2*) 者不同的是，
+  `id` 是**唯一** (*unique*) 的。
+
+ [CSS][mdnCSS] 除了上述三類選擇器，還設計了輔助用的運算子，如 `>`，可以更精確
+ 的選出需要排版的元素，可以參照 [CSS][mdnCSS] 的說明。
+
+## 範例：以 [CSS][mdnCSS] 搭配 [HTML][mdnHTML] 製作下拉功能表
+
+ 上面 `index.html` 和 `styles.css` 裡刪除的部份其實是個簡易的下拉式功能
+ 表單。程式表列出如下。將它們放入原來的檔案後，`index.html` 就有了一個簡單的
+ 下拉表單。
+
+```html
+22.       <ul>
+23.         <li id="sec1">第一頁
+24.           <ul class="drop_box" id="drop_1">
+25.             <li><a href="#sec1">Section 1</a></li>
+26.           </ul>
+27.         </li>
+28.         <li>第二頁
+29.           <ul class="drop_box" id="drop_2">
+30.             <li><a href="#sec2">Section 2</a></li>
+31.           </ul>
+32.         </li>
+33.         <li>第三頁
+34.           <ul class="drop_box" id="drop_3">
+35.             <li><a href="#sec3">Section 3</a></li>
+36.           </ul>
+37.         </li>
+38.         <li>第四頁</li>
+39.         <li>第五頁</li>
+40.         <li id="about">關  於
+41.           <ul class="drop_box" id="drop_about">
+42.             <li>小組成員</li>
+43.             <li>工作分工</li>
+44.           </ul>
+45.         </li>
+46.       </ul>
+```
+
+```css
+18. /*
+19.  * 選擇 nav 下面的 ul 元素下的 *所有* li 元素
+20.  */
+21. nav > ul > li {
+22.     display: inline-block;
+23.     height: 2em;
+24.     min-width: 4em;
+25.     line-height: 2em;
+26.     text-align: center;
+27.     // 上下 pading: 0; 左右 padding: 0.5 em;
+28.     padding: 0px .5em;
+29.     // 上下 pading: 0; 左右 padding: 0.25 em;
+30.     margin: 0px .25em;
+31.     border: none;
+32.     background-color: bisque;
+33. }
+34.
+35. /*
+36.  * 當滑鼠游標移到 nav > ul > li 上時，更改 *背景顏色*
+37.  */
+38. nav > ul > li:hover {
+39.     background-color: #dfdfdf;
+40. }
+41.
+42. nav > ul > li:hover [id*=drop_] {
+43.     display: block;
+44. }
+45.
+98. /*
+99.  * 下拉式 (drop-down) 功能表
+100.  */
+101. .drop_box {
+102.     // 預設不顯示;
+103.     display: none;
+104.     // 去除 ul.li 的項目標示;
+105.     list-style-type: none;
+107.     // 位置跟隨它的父元素;
+108.     position: absolute;
+109.     background-color: #f9f9f9;
+110.     padding: 0px;
+111.     margin: 0px .25em;
+112. }
+113.
+114. /*
+115.  * 下拉式功能表裡的 *li* (list item)
+116.  * 選單項目屬性設定
+117.  */
+118. .drop_box ul li {
+119.     min-width: 4em;
+120.     text-align: center;
+121.     padding: 0px .5em;
+122.     margin: .25em 0px;
+123.     border: none;
+124.     background-color: bisque;
+125. }
+126.
+127. /*
+128.  * 當滑鼠游標移至
+129.  * 下拉式功能表裡的 *li* (list item)
+130.  * 選單項目時，
+131.  * 更改屬性設定
+132.  */
+133. .drop_box li:hover {
+134.     color: DodgerBlue;
+135.     background-color: Salmon;
+136. }
+137.
+143. /*
+144.  * 當滑鼠游標移至 *關於* (about) 時，將
+145.  * 對應的 drop_box 顯示出來
+146.  */
+147. #about:hover #drop_about {
+148.     display: block;
+149. }
+150.
+```
+
+[github]: https://github.com/
+[wikiText]: https://en.wikipedia.org/wiki/Text_(literary_theory)
+
+<!-- css.md -->
+
 [android]: https://developer.android.com
 [ECMAScript]: https://www.ecma-international.org/publications/standards/Ecma-262.htm
 [nodejs]: https://nodejs.org/en
@@ -331,6 +780,7 @@
 [wikiProgLang]: https://en.wikipedia.org/wiki/Programming_language
 [wikiXML]: https://en.wikipedia.org/wiki/XML
 [wikiYAML]: https://en.wikipedia.org/wiki/YAML
+[sokoban.tiles]: https://opengameart.org/content/sokoban-clone-tiles
 [^android]: https://developer.android.com
 [^ECMAScript]: https://en.wikipedia.org/wiki/ECMAScript
 [^nodejs]: https://nodejs.org
